@@ -4,7 +4,7 @@
       <div class="nav-left">
         <img
           alt="Konnect Logo"
-          src="/public/logo.svg"
+          src="/logo.svg"
         >
       </div>
       <div class="nav-right">
@@ -48,6 +48,8 @@ import { PeopleIcon, CogIcon, ProfileIcon } from '@kong/icons'
   justify-content: space-between;
   margin-bottom: 4rem;
   padding: 16px 24px;
+  flex-wrap: wrap;
+  row-gap: $kui-space-40;
 
   .nav-left {
     align-items: center;
@@ -71,6 +73,7 @@ import { PeopleIcon, CogIcon, ProfileIcon } from '@kong/icons'
     align-items: center;
     display: flex;
     gap: 8px;
+    flex-wrap: wrap;
 
     .nav-button {
       align-items: center;
@@ -110,6 +113,15 @@ import { PeopleIcon, CogIcon, ProfileIcon } from '@kong/icons'
     &.router-link-exact-active {
       color: green;
     }
+  }
+}
+
+@media (max-width: $kui-breakpoint-mobile) {
+  .nav {
+    padding: $kui-space-50 $kui-space-60;
+  }
+  .nav-right .nav-button span {
+    display: none;
   }
 }
 </style>

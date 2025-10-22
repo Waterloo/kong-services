@@ -1,9 +1,20 @@
 <template>
   <div class="service-catalog">
     <div class="services-header">
-      <h1 class="main-title">
-        Service Hub
-      </h1>
+      <div class="services-title">
+        <h1 class="main-title">
+          Service Hub
+        </h1>
+        <p class="sub-title">
+          Organize services, manage and track versioning and API service documentation.
+          <a
+            class="learn-more"
+            href="#"
+          >
+            Learn more
+          </a>
+        </p>
+      </div>
       <div class="service-header-actions">
         <KInput
           v-model="servicesStore.searchQuery"
@@ -57,7 +68,6 @@
     <template v-else-if="servicesStore.filteredServices.length">
       <ul
         class="catalog"
-        role="list"
       >
         <ServiceCard
           v-for="service in servicesStore.paginatedServices"
@@ -226,13 +236,35 @@ input {
 }
 
 .main-title {
-  color: $kui-color-text-neutral-stronger
+  color: $kui-color-text-neutral-stronger;
+  margin: $kui-space-50 0;
+}
+
+.services-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-title {
+  color: $kui-color-text-neutral;
+  margin: 0;
+}
+
+.learn-more {
+  color: $kui-color-text-primary;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .services-header {
-  align-items: center;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
+  gap: $kui-space-50;
 }
 
 $kui-color-background-primary: #07A88D;
@@ -243,14 +275,46 @@ $kui-color-background-primary: #07A88D;
   padding: $kui-space-50 $kui-space-80;
   display: flex;
   gap: $kui-space-50;
+  width: 100%;
+  justify-content: center;
 }
 
 .service-header-actions {
   display: flex;
+  flex-direction: column;
   gap: $kui-space-30;
+  width: 100%;
 }
 
 .error-state {
   margin-top: $kui-space-100;
+}
+
+// Make the search input span full width on mobile
+.search-input {
+  width: 100%;
+}
+
+// At larger container sizes, switch back to a horizontal layout and auto widths
+@container service (min-width: #{$phablet-width}) {
+  .services-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .service-header-actions {
+    flex-direction: row;
+    width: auto;
+  }
+
+  .search-input {
+    width: auto;
+  }
+
+  .service-package-button {
+    width: auto;
+    justify-content: center;
+  }
 }
 </style>
