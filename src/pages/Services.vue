@@ -18,6 +18,7 @@
         <KButton
           appearance="none"
           class="service-package-button"
+          @click="handleServicePackageModalOpen()"
         >
           <AddIcon /> Service Package
         </KButton>
@@ -91,6 +92,17 @@
       :visible="detailsVisible"
       @close="closeModal"
     />
+
+    <KModal
+      action-button-text="Ok"
+      hide-cancel-button
+      title="Service Package"
+      :visible="servicePackageModalVisible"
+      @cancel="handleServicePackageModalClose"
+      @proceed="handleServicePackageModalClose"
+    >
+      Soon you will be able to create service packages here.
+    </KModal>
   </div>
 </template>
 
@@ -121,6 +133,7 @@ function onPageChange(pageChangeEvent: PageChangeData) {
 }
 
 const detailsVisible = ref(false)
+const servicePackageModalVisible = ref(false)
 
 const route = useRoute()
 const router = useRouter()
@@ -147,6 +160,13 @@ function handleCardClick(id: string) {
 
 function closeModal() {
   router.push({ name: 'Services' })
+}
+
+function handleServicePackageModalOpen() {
+  servicePackageModalVisible.value = true
+}
+function handleServicePackageModalClose() {
+  servicePackageModalVisible.value = false
 }
 
 </script>
@@ -221,11 +241,13 @@ $kui-color-background-primary: #07A88D;
   border-radius: $kui-border-radius-round;
   color: $kui-color-text-inverse;
   padding: $kui-space-50 $kui-space-80;
+  display: flex;
+  gap: $kui-space-50;
 }
 
 .service-header-actions {
   display: flex;
-  gap: $kui-space-50;
+  gap: $kui-space-30;
 }
 
 .error-state {
