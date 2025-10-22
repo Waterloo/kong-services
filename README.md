@@ -1,5 +1,5 @@
 
-# Services Catalog
+# Kong Services Catalog
 
   
 
