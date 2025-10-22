@@ -1,11 +1,17 @@
-export default [
+import type { Service } from '../src/types/models/services'
+
+// Exportable service state helpers
+export const PUBLISHED = { published: true, configured: true }
+export const UNPUBLISHED = { published: false, configured: true }
+export const UNCONFIGURED = { published: false, configured: false }
+
+const services: Service[] = [
   {
     id: '3f285716-163b-4ddc-9407-f3984c8a1328',
     name: 'Luxurious Concrete Soap',
     description: 'Function-based hybrid task-force',
     type: 'REST',
-    published: true,
-    configured: true,
+    ...PUBLISHED,
     versions: [
       {
         id: 'e99f0377-a254-4315-924d-721db1588f9a',
@@ -32,8 +38,7 @@ export default [
     name: 'Small Steel Salad',
     description: "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
     type: 'REST',
-    published: true,
-    configured: true,
+    ...PUBLISHED,
     versions: [
       {
         id: 'bce34384-bb9f-4710-8f62-41c0511814ce',
@@ -96,8 +101,7 @@ export default [
     name: 'Refined Rubber Car',
     description: '',
     type: 'REST',
-    published: true,
-    configured: true,
+    ...PUBLISHED,
     versions: [
       {
         id: '85e4fc91-f9fe-496f-be84-67820dfcf8ec',
@@ -167,4 +171,366 @@ export default [
       errors: 0.0838,
     },
   },
+  {
+    id: 'b4c8f9e2-3d7a-4f1b-9c2e-8a5d6f0e1b3c',
+    name: 'Elegant Payment Gateway',
+    description: 'Seamless integration for modern payment processing',
+    type: 'REST',
+    ...PUBLISHED,
+    versions: [
+      {
+        id: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
+        name: '2.1.0',
+        description: 'Enhanced security features',
+        developer: {
+          id: '14543288-21f2-4522-96a7-363bc1966278',
+          name: 'Loren Thiel',
+          email: 'Loren_Thiel@gmail.com',
+          avatar: 'https://avatars.githubusercontent.com/u/43187312',
+        },
+        updated_at: '2023-10-22T14:30:00.000Z',
+      },
+    ],
+    metrics: {
+      latency: 0.38,
+      uptime: 0.9891,
+      requests: 892341,
+      errors: 0.0423,
+    },
+  },
+  {
+    id: 'c5d9a1f3-4e8b-5c2d-9d3e-7b6c8e1f2a4d',
+    name: 'Modern Analytics Engine',
+    description: 'Enterprise-grade data processing and real-time analytics',
+    type: 'HTTP',
+    ...PUBLISHED,
+    versions: [
+      {
+        id: 'f1e2d3c4-b5a6-7980-fedc-ba0987654321',
+        name: '3.4.1',
+        description: 'Performance optimizations',
+        developer: {
+          id: 'd0b7d730-895a-4490-91a6-ed08b9839595',
+          name: 'Mathew Muller',
+          email: 'Mathew_Muller52@yahoo.com',
+          avatar: 'https://avatars.githubusercontent.com/u/55322551',
+        },
+        updated_at: '2023-11-05T09:15:30.000Z',
+      },
+      {
+        id: 'g2h3i4j5-k6l7-8901-m2n3-o4p5q6r7s8t9',
+        name: '3.3.0',
+        description: 'New dashboard features',
+        developer: {
+          id: 'd0b7d730-895a-4490-91a6-ed08b9839595',
+          name: 'Mathew Muller',
+          email: 'Mathew_Muller52@yahoo.com',
+          avatar: 'https://avatars.githubusercontent.com/u/55322551',
+        },
+        updated_at: '2023-09-28T16:45:12.000Z',
+      },
+    ],
+    metrics: {
+      latency: 0.62,
+      uptime: 0.9567,
+      requests: 524189,
+      errors: 0.0712,
+    },
+  },
+  {
+    id: 'd6e0b2g4-5f9c-6d3e-0e4f-8c7d9f2g3b5e',
+    name: 'Secure Authentication Hub',
+    description: 'Multi-factor authentication and authorization service',
+    type: 'REST',
+    ...UNPUBLISHED,
+    versions: [
+      {
+        id: 'h3i4j5k6-l7m8-9012-n3o4-p5q6r7s8t9u0',
+        name: '1.5.2',
+        description: 'OAuth 2.0 improvements',
+        developer: {
+          id: '26588d65-f53f-4721-b8c4-97b88be56440',
+          name: 'Roland Halvorson',
+          email: 'Roland_Halvorson69@hotmail.com',
+          avatar: 'https://avatars.githubusercontent.com/u/95447020',
+        },
+        updated_at: '2023-12-18T11:20:45.000Z',
+      },
+    ],
+    metrics: {
+      latency: 0.29,
+      uptime: 0.9923,
+      requests: 1234567,
+      errors: 0.0189,
+    },
+  },
+  {
+    id: 'e7f1c3h5-6g0d-7e4f-1f5g-9d8e0g3h4c6f',
+    name: 'Advanced Data Pipeline',
+    description: 'Scalable ETL and data transformation service',
+    type: 'HTTP',
+    ...UNPUBLISHED,
+    versions: [
+      {
+        id: 'i4j5k6l7-m8n9-0123-o4p5-q6r7s8t9u0v1',
+        name: '4.2.0',
+        description: 'Batch processing enhancements',
+        developer: {
+          id: '121e0fab-c1c3-472e-8b38-2896e13adaea',
+          name: 'Chris Reinger',
+          email: 'Chris_Reinger@hotmail.com',
+          avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/551.jpg',
+        },
+        updated_at: '2023-10-30T13:55:22.000Z',
+      },
+      {
+        id: 'j5k6l7m8-n9o0-1234-p5q6-r7s8t9u0v1w2',
+        name: '4.1.3',
+        description: 'Bug fixes and stability improvements',
+        developer: {
+          id: '121e0fab-c1c3-472e-8b38-2896e13adaea',
+          name: 'Chris Reinger',
+          email: 'Chris_Reinger@hotmail.com',
+          avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/551.jpg',
+        },
+        updated_at: '2023-09-15T08:30:10.000Z',
+      },
+    ],
+    metrics: {
+      latency: 0.81,
+      uptime: 0.9234,
+      requests: 298765,
+      errors: 0.1023,
+    },
+  },
+  {
+    id: 'f8g2d4i6-7h1e-8f5g-2g6h-0e9f1h4i5d7g',
+    name: 'Smart Notification Service',
+    description: 'Real-time push notifications and alert management',
+    type: 'REST',
+    ...UNPUBLISHED,
+    versions: [
+      {
+        id: 'k6l7m8n9-o0p1-2345-q6r7-s8t9u0v1w2x3',
+        name: '2.8.1',
+        description: 'Multi-channel delivery support',
+        developer: {
+          id: 'e394136a-70cf-4311-be04-76dffcbed691',
+          name: 'Adrian Kling',
+          email: 'Adrian_Kling91@yahoo.com',
+          avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1078.jpg',
+        },
+        updated_at: '2023-11-28T17:40:33.000Z',
+      },
+    ],
+    metrics: {
+      latency: 0.33,
+      uptime: 0.9812,
+      requests: 456789,
+      errors: 0.0345,
+    },
+  },
+  {
+    id: 'g9h3e5j7-8i2f-9g6h-3h7i-1f0g2i5j6e8h',
+    name: 'Real-time Chat API',
+    description: 'WebSocket-based messaging and chat platform',
+    type: 'HTTP',
+    ...UNPUBLISHED,
+    versions: [
+      {
+        id: 'l7m8n9o0-p1q2-3456-r7s8-t9u0v1w2x3y4',
+        name: '1.2.4',
+        description: 'Message encryption improvements',
+        developer: {
+          id: '14543288-21f2-4522-96a7-363bc1966278',
+          name: 'Loren Thiel',
+          email: 'Loren_Thiel@gmail.com',
+          avatar: 'https://avatars.githubusercontent.com/u/43187312',
+        },
+        updated_at: '2023-12-05T10:25:18.000Z',
+      },
+    ],
+    metrics: {
+      latency: 0.19,
+      uptime: 0.9945,
+      requests: 2134567,
+      errors: 0.0123,
+    },
+  },
+  {
+    id: 'h0i4f6k8-9j3g-0h7i-4i8j-2g1h3j6k7f9i',
+    name: 'Cloud Storage Manager',
+    description: 'Distributed file storage and CDN integration',
+    type: 'REST',
+    ...UNCONFIGURED,
+    versions: [
+      {
+        id: 'm8n9o0p1-q2r3-4567-s8t9-u0v1w2x3y4z5',
+        name: '5.0.0-beta',
+        description: 'Major version with breaking changes',
+        developer: {
+          id: 'd0b7d730-895a-4490-91a6-ed08b9839595',
+          name: 'Mathew Muller',
+          email: 'Mathew_Muller52@yahoo.com',
+          avatar: 'https://avatars.githubusercontent.com/u/55322551',
+        },
+        updated_at: '2024-01-20T15:10:05.000Z',
+      },
+    ],
+    metrics: {
+      latency: 0.95,
+      uptime: 0.8876,
+      requests: 187234,
+      errors: 0.1456,
+    },
+  },
+  {
+    id: 'i1j5g7l9-0k4h-1i8j-5j9k-3h2i4k7l8g0j',
+    name: 'Email Delivery Service',
+    description: 'Transactional and marketing email delivery platform',
+    type: 'REST',
+    ...UNCONFIGURED,
+    versions: [
+      {
+        id: 'n9o0p1q2-r3s4-5678-t9u0-v1w2x3y4z5a6',
+        name: '0.9.0',
+        description: 'Pre-release version',
+        developer: {
+          id: '26588d65-f53f-4721-b8c4-97b88be56440',
+          name: 'Roland Halvorson',
+          email: 'Roland_Halvorson69@hotmail.com',
+          avatar: 'https://avatars.githubusercontent.com/u/95447020',
+        },
+        updated_at: '2024-01-15T12:35:42.000Z',
+      },
+    ],
+    metrics: {
+      latency: 0.44,
+      uptime: 0.9123,
+      requests: 345678,
+      errors: 0.0876,
+    },
+  },
+  {
+    id: 'j2k6h8m0-1l5i-2j9k-6k0l-4i3j5l8m9h1k',
+    name: 'Image Processing API',
+    description: 'On-the-fly image resizing, optimization, and transformation',
+    type: 'HTTP',
+    ...UNCONFIGURED,
+    versions: [
+      {
+        id: 'o0p1q2r3-s4t5-6789-u0v1-w2x3y4z5a6b7',
+        name: '1.0.0-rc1',
+        description: 'Release candidate',
+        developer: {
+          id: '121e0fab-c1c3-472e-8b38-2896e13adaea',
+          name: 'Chris Reinger',
+          email: 'Chris_Reinger@hotmail.com',
+          avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/551.jpg',
+        },
+        updated_at: '2024-01-18T09:20:15.000Z',
+      },
+    ],
+    metrics: {
+      latency: 0.73,
+      uptime: 0.8945,
+      requests: 123456,
+      errors: 0.1234,
+    },
+  },
+  {
+    id: 'k3l7i9n1-2m6j-3k0l-7l1m-5j4k6m9n0i2l',
+    name: 'Location Tracking Service',
+    description: 'GPS tracking and geofencing capabilities',
+    type: 'REST',
+    ...UNCONFIGURED,
+    versions: [
+      {
+        id: 'p1q2r3s4-t5u6-7890-v1w2-x3y4z5a6b7c8',
+        name: '0.5.0',
+        description: 'Early development version',
+        developer: {
+          id: 'e394136a-70cf-4311-be04-76dffcbed691',
+          name: 'Adrian Kling',
+          email: 'Adrian_Kling91@yahoo.com',
+          avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1078.jpg',
+        },
+        updated_at: '2024-01-22T14:50:28.000Z',
+      },
+    ],
+    metrics: {
+      latency: 0.56,
+      uptime: 0.9012,
+      requests: 234567,
+      errors: 0.0989,
+    },
+  },
+  {
+    id: 'l4m8j0o2-3n7k-4l1m-8m2n-6k5l7n0o1j3m',
+    name: 'Invoice Management System',
+    description: 'Automated billing and invoice generation',
+    type: 'REST',
+    ...PUBLISHED,
+    versions: [
+      {
+        id: 'q2r3s4t5-u6v7-8901-w2x3-y4z5a6b7c8d9',
+        name: '3.1.2',
+        description: 'Tax calculation updates',
+        developer: {
+          id: '14543288-21f2-4522-96a7-363bc1966278',
+          name: 'Loren Thiel',
+          email: 'Loren_Thiel@gmail.com',
+          avatar: 'https://avatars.githubusercontent.com/u/43187312',
+        },
+        updated_at: '2023-12-10T11:15:52.000Z',
+      },
+      {
+        id: 'r3s4t5u6-v7w8-9012-x3y4-z5a6b7c8d9e0',
+        name: '3.0.0',
+        description: 'Major release with new features',
+        developer: {
+          id: '14543288-21f2-4522-96a7-363bc1966278',
+          name: 'Loren Thiel',
+          email: 'Loren_Thiel@gmail.com',
+          avatar: 'https://avatars.githubusercontent.com/u/43187312',
+        },
+        updated_at: '2023-10-01T08:00:00.000Z',
+      },
+    ],
+    metrics: {
+      latency: 0.41,
+      uptime: 0.9778,
+      requests: 567890,
+      errors: 0.0267,
+    },
+  },
+  {
+    id: 'm5n9k1p3-4o8l-5m2n-9n3o-7l6m8o1p2k4n',
+    name: 'User Profile Service',
+    description: 'Centralized user data and preference management',
+    type: 'HTTP',
+    ...PUBLISHED,
+    versions: [
+      {
+        id: 's4t5u6v7-w8x9-0123-y4z5-a6b7c8d9e0f1',
+        name: '2.3.5',
+        description: 'Privacy controls enhancement',
+        developer: {
+          id: 'd0b7d730-895a-4490-91a6-ed08b9839595',
+          name: 'Mathew Muller',
+          email: 'Mathew_Muller52@yahoo.com',
+          avatar: 'https://avatars.githubusercontent.com/u/55322551',
+        },
+        updated_at: '2023-11-20T16:30:27.000Z',
+      },
+    ],
+    metrics: {
+      latency: 0.35,
+      uptime: 0.9856,
+      requests: 987654,
+      errors: 0.0312,
+    },
+  },
 ]
+
+export default services

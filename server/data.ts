@@ -30,12 +30,12 @@ const data = () => {
     data.services.push({
       id: faker.string.uuid(),
       name: faker.commerce.productName(),
-      description: Math.random() < 0.95 ? (Math.random() > 0.50 ? faker.commerce.productDescription() : faker.company.catchPhrase()) : '',
+      description: (Math.random() > 0.50 ? faker.commerce.productDescription() : faker.company.catchPhrase()),
       type: Math.random() < 0.75 ? 'REST' : 'HTTP',
       published,
       configured,
       versions: (() => {
-        const versionCount = configured ? faker.number.int({ min: published ? 1 : 0, max: 5 }) : 0
+        const versionCount = configured ? faker.number.int({ min: published ? 1 : 0, max: 25 }) : 0
 
         if (versionCount === 0) return []
 

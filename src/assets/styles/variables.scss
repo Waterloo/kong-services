@@ -1,0 +1,3 @@
+@use '@kong/design-tokens/tokens/scss/variables' as kong;
+$kui-color-background-primary: #07A88D !default;
+@forward '@kong/design-tokens/tokens/scss/variables' hide kui-color-background-primary;

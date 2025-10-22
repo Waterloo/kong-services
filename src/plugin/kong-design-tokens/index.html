@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Tokens Documentation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+      background: #ffffff;
+      color: #000933;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    header {
+      margin-bottom: 80px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -0.48px;
+      margin-bottom: 16px;
+      color: #000933;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #6c7489;
+      font-weight: 400;
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: #6c7489;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    nav button:hover {
+      color: #0044f4;
+      background: #eefaff;
+    }
+
+    nav button.active {
+      color: #0044f4;
+      background: #eefaff;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      letter-spacing: -0.32px;
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 48px;
+      margin-bottom: 24px;
+      color: #000933;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .color-card {
+      border: 1px solid #e0e4ea;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.2s;
+      background: white;
+    }
+
+    .color-card:hover {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .color-preview {
+      height: 100px;
+      width: 100%;
+    }
+
+    .color-info {
+      padding: 16px;
+    }
+
+    .token-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #000933;
+      margin-bottom: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .token-value {
+      font-size: 11px;
+      color: #6c7489;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .token-description {
+      font-size: 12px;
+      color: #6c7489;
+      margin-top: 8px;
+    }
+
+    .spacing-card, .size-card {
+      border: 1px solid #e0e4ea;
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.2s;
+      background: white;
+    }
+
+    .spacing-card:hover, .size-card:hover {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .spacing-visual {
+      height: 40px;
+      background: #0044f4;
+      border-radius: 4px;
+      margin: 12px 0;
+    }
+
+    .icon-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #eefaff;
+      border-radius: 8px;
+      margin: 12px 0;
+      padding: 20px;
+    }
+
+    .icon-box {
+      background: #0044f4;
+      border-radius: 4px;
+    }
+
+    .shadow-card {
+      border: 1px solid #e0e4ea;
+      border-radius: 12px;
+      padding: 40px;
+      background: white;
+      transition: all 0.2s;
+    }
+
+    .shadow-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .shadow-example {
+      width: 100%;
+      height: 80px;
+      background: white;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .typography-example {
+      border: 1px solid #e0e4ea;
+      border-radius: 12px;
+      padding: 24px;
+      background: white;
+      margin-bottom: 16px;
+    }
+
+    .search-box {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto 40px;
+      padding: 12px 20px;
+      border: 1px solid #e0e4ea;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .search-box:focus {
+      outline: none;
+      border-color: #0044f4;
+      box-shadow: 0 0 0 4px rgba(0, 68, 244, 0.2);
+    }
+
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 80px 20px;
+      color: #6c7489;
+    }
+
+    .no-results.active {
+      display: block;
+    }
+
+    .no-results-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    .no-results h3 {
+      color: #000933;
+      margin: 0 0 8px 0;
+    }
+
+    .no-results p {
+      color: #6c7489;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Kong Design Tokens</h1>
+      <p class="subtitle">design system token library</p>
+      <nav id="nav">
+        <button class="active" data-section="colors">Colors</button>
+        <button data-section="spacing">Spacing</button>
+        <button data-section="typography">Typography</button>
+        <button data-section="shadows">Shadows</button>
+        <button data-section="icons">Icons</button>
+        <button data-section="borders">Borders</button>
+      </nav>
+    </header>
+
+    <input type="text" class="search-box" id="search" placeholder="Search tokens...">
+
+    <div id="no-results" class="no-results">
+      <div class="no-results-icon">🔍</div>
+      <h3>No results found</h3>
+      <p>Try searching for something else</p>
+    </div>
+
+    <div id="colors" class="section active">
+      <h2>Color Tokens</h2>
+      
+      <h3>Background Colors</h3>
+      <div class="grid" id="bg-colors"></div>
+
+      <h3>Text Colors</h3>
+      <div class="grid" id="text-colors"></div>
+
+      <h3>Border Colors</h3>
+      <div class="grid" id="border-colors"></div>
+    </div>
+
+    <div id="spacing" class="section">
+      <h2>Spacing Tokens</h2>
+      <div class="grid" id="spacing-tokens"></div>
+    </div>
+
+    <div id="typography" class="section">
+      <h2>Typography Tokens</h2>
+      <h3>Font Sizes</h3>
+      <div id="font-sizes"></div>
+      <h3>Font Weights</h3>
+      <div id="font-weights"></div>
+      <h3>Line Heights</h3>
+      <div id="line-heights"></div>
+    </div>
+
+    <div id="shadows" class="section">
+      <h2>Shadow Tokens</h2>
+      <div class="grid" id="shadow-tokens"></div>
+    </div>
+
+    <div id="icons" class="section">
+      <h2>Icon Tokens</h2>
+      <h3>Icon Sizes</h3>
+      <div class="grid" id="icon-sizes"></div>
+      <h3>Icon Colors</h3>
+      <div class="grid" id="icon-colors"></div>
+    </div>
+
+    <div id="borders" class="section">
+      <h2>Border Tokens</h2>
+      <h3>Border Radius</h3>
+      <div class="grid" id="border-radius"></div>
+      <h3>Border Width</h3>
+      <div class="grid" id="border-width"></div>
+    </div>
+  </div>
+
+  <script>
+    const tokens = {
+      'kui-color-background': '#ffffff',
+      'kui-color-background-danger': '#d60027',
+      'kui-color-background-danger-strong': '#ad000e',
+      'kui-color-background-danger-stronger': '#850000',
+      'kui-color-background-danger-strongest': '#5c0000',
+      'kui-color-background-danger-weak': '#ff3954',
+      'kui-color-background-danger-weaker': '#ffabab',
+      'kui-color-background-danger-weakest': '#ffe5e5',
+      'kui-color-background-primary': '#0044f4',
+      'kui-color-background-primary-weak': '#5f9aff',
+      'kui-color-background-primary-weaker': '#bee2ff',
+      'kui-color-background-primary-weakest': '#eefaff',
+      'kui-color-background-success': '#007d60',
+      'kui-color-background-success-weak': '#00d6a4',
+      'kui-color-background-success-weaker': '#b5ffee',
+      'kui-color-background-success-weakest': '#ecfffb',
+      'kui-color-background-warning': '#995c00',
+      'kui-color-background-warning-weak': '#ffc400',
+      'kui-color-background-warning-weaker': '#fff296',
+      'kui-color-background-warning-weakest': '#fffce0',
+      'kui-color-background-neutral': '#6c7489',
+      'kui-color-background-neutral-weak': '#afb7c5',
+      'kui-color-background-neutral-weaker': '#e0e4ea',
+      'kui-color-background-neutral-weakest': '#f9fafb',
+    };
+
+    const textColors = {
+      'kui-color-text': '#000933',
+      'kui-color-text-danger': '#d60027',
+      'kui-color-text-primary': '#0044f4',
+      'kui-color-text-success': '#007d60',
+      'kui-color-text-warning': '#995c00',
+      'kui-color-text-neutral': '#6c7489',
+      'kui-color-text-disabled': '#afb7c5',
+      'kui-color-text-inverse': '#ffffff',
+    };
+
+    const borderColors = {
+      'kui-color-border': '#e0e4ea',
+      'kui-color-border-danger': '#d60027',
+      'kui-color-border-primary': '#0044f4',
+      'kui-color-border-disabled': '#e0e4ea',
+      'kui-color-border-neutral': '#6c7489',
+    };
+
+    const spacing = {
+      'kui-space-0': '0px',
+      'kui-space-10': '2px',
+      'kui-space-20': '4px',
+      'kui-space-30': '6px',
+      'kui-space-40': '8px',
+      'kui-space-50': '12px',
+      'kui-space-60': '16px',
+      'kui-space-70': '20px',
+      'kui-space-80': '24px',
+      'kui-space-90': '32px',
+      'kui-space-100': '40px',
+      'kui-space-110': '48px',
+      'kui-space-120': '56px',
+      'kui-space-130': '64px',
+    };
+
+    const fontSizes = {
+      'kui-font-size-10': '10px',
+      'kui-font-size-20': '12px',
+      'kui-font-size-30': '14px',
+      'kui-font-size-40': '16px',
+      'kui-font-size-50': '18px',
+      'kui-font-size-60': '20px',
+      'kui-font-size-70': '24px',
+      'kui-font-size-80': '32px',
+      'kui-font-size-90': '40px',
+      'kui-font-size-100': '48px',
+    };
+
+    const shadows = {
+      'kui-shadow': '0px 4px 20px 0px rgba(0, 0, 0, 0.08)',
+      'kui-shadow-border': '0px 0px 0px 1px #e0e4ea inset',
+      'kui-shadow-border-danger': '0px 0px 0px 1px #d60027 inset',
+      'kui-shadow-border-primary': '0px 0px 0px 1px #0044f4 inset',
+      'kui-shadow-focus': '0px 0px 0px 4px rgba(0, 68, 244, 0.2)',
+    };
+
+    const iconSizes = {
+      'kui-icon-size-10': '10px',
+      'kui-icon-size-20': '12px',
+      'kui-icon-size-30': '16px',
+      'kui-icon-size-40': '20px',
+      'kui-icon-size-50': '24px',
+      'kui-icon-size-60': '32px',
+      'kui-icon-size-70': '40px',
+      'kui-icon-size-80': '48px',
+    };
+
+    const iconColors = {
+      'kui-icon-color-danger': '#f50045',
+      'kui-icon-color-neutral': '#828a9e',
+      'kui-icon-color-primary': '#306fff',
+      'kui-icon-color-success': '#00a17b',
+      'kui-icon-color-warning': '#ffc400',
+    };
+
+    const borderRadius = {
+      'kui-border-radius-0': '0px',
+      'kui-border-radius-10': '2px',
+      'kui-border-radius-20': '4px',
+      'kui-border-radius-30': '6px',
+      'kui-border-radius-40': '8px',
+      'kui-border-radius-50': '10px',
+      'kui-border-radius-circle': '50%',
+      'kui-border-radius-round': '100px',
+    };
+
+    const borderWidth = {
+      'kui-border-width-0': '0px',
+      'kui-border-width-10': '1px',
+      'kui-border-width-20': '2px',
+      'kui-border-width-30': '4px',
+    };
+
+    function renderColors(colors, containerId) {
+      const container = document.getElementById(containerId);
+      Object.entries(colors).forEach(([name, value]) => {
+        const card = document.createElement('div');
+        card.className = 'color-card';
+        card.innerHTML = `
+          <div class="color-preview" style="background-color: ${value}; ${value === '#ffffff' ? 'border-bottom: 1px solid #e0e4ea;' : ''}"></div>
+          <div class="color-info">
+            <div class="token-name">--${name}</div>
+            <div class="token-value">${value}</div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderSpacing() {
+      const container = document.getElementById('spacing-tokens');
+      Object.entries(spacing).forEach(([name, value]) => {
+        const card = document.createElement('div');
+        card.className = 'spacing-card';
+        card.innerHTML = `
+          <div class="token-name">--${name}</div>
+          <div class="token-value">${value}</div>
+          <div class="spacing-visual" style="width: ${value};"></div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderFontSizes() {
+      const container = document.getElementById('font-sizes');
+      Object.entries(fontSizes).forEach(([name, value]) => {
+        const example = document.createElement('div');
+        example.className = 'typography-example';
+        example.innerHTML = `
+          <div class="token-name">--${name}</div>
+          <div class="token-value">${value}</div>
+          <div style="font-size: ${value}; margin-top: 12px;">The quick brown fox jumps</div>
+        `;
+        container.appendChild(example);
+      });
+    }
+
+    function renderShadows() {
+      const container = document.getElementById('shadow-tokens');
+      Object.entries(shadows).forEach(([name, value]) => {
+        const card = document.createElement('div');
+        card.className = 'shadow-card';
+        card.innerHTML = `
+          <div class="token-name">--${name}</div>
+          <div class="token-value">${value}</div>
+          <div class="shadow-example" style="box-shadow: ${value};"></div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderIconSizes() {
+      const container = document.getElementById('icon-sizes');
+      Object.entries(iconSizes).forEach(([name, value]) => {
+        const card = document.createElement('div');
+        card.className = 'size-card';
+        card.innerHTML = `
+          <div class="token-name">--${name}</div>
+          <div class="token-value">${value}</div>
+          <div class="icon-visual">
+            <div class="icon-box" style="width: ${value}; height: ${value};"></div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderIconColors() {
+      const container = document.getElementById('icon-colors');
+      Object.entries(iconColors).forEach(([name, value]) => {
+        const card = document.createElement('div');
+        card.className = 'color-card';
+        card.innerHTML = `
+          <div class="color-preview" style="background-color: ${value};"></div>
+          <div class="color-info">
+            <div class="token-name">--${name}</div>
+            <div class="token-value">${value}</div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderBorderRadius() {
+      const container = document.getElementById('border-radius');
+      Object.entries(borderRadius).forEach(([name, value]) => {
+        const card = document.createElement('div');
+        card.className = 'size-card';
+        card.innerHTML = `
+          <div class="token-name">--${name}</div>
+          <div class="token-value">${value}</div>
+          <div class="icon-visual">
+            <div class="icon-box" style="width: 60px; height: 60px; border-radius: ${value};"></div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderBorderWidth() {
+      const container = document.getElementById('border-width');
+      Object.entries(borderWidth).forEach(([name, value]) => {
+        const card = document.createElement('div');
+        card.className = 'size-card';
+        card.innerHTML = `
+          <div class="token-name">--${name}</div>
+          <div class="token-value">${value}</div>
+          <div style="height: 40px; border: ${value} solid #0044f4; border-radius: 4px; margin-top: 12px;"></div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    renderColors(tokens, 'bg-colors');
+    renderColors(textColors, 'text-colors');
+    renderColors(borderColors, 'border-colors');
+    renderSpacing();
+    renderFontSizes();
+    renderShadows();
+    renderIconSizes();
+    renderIconColors();
+    renderBorderRadius();
+    renderBorderWidth();
+
+    document.getElementById('nav').addEventListener('click', (e) => {
+      if (e.target.tagName === 'BUTTON') {
+        document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+        
+        e.target.classList.add('active');
+        document.getElementById(e.target.dataset.section).classList.add('active');
+      }
+    });
+
+    document.getElementById('search').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      const noResults = document.getElementById('no-results');
+      
+      if (query === '') {
+        // Reset: hide all sections except the active one
+        noResults.classList.remove('active');
+        document.querySelectorAll('.color-card, .spacing-card, .size-card, .shadow-card, .typography-example').forEach(card => {
+          card.style.display = '';
+        });
+        document.querySelectorAll('.section').forEach(section => {
+          section.classList.remove('active');
+        });
+        const activeButton = document.querySelector('nav button.active');
+        if (activeButton) {
+          document.getElementById(activeButton.dataset.section).classList.add('active');
+        } else {
+          document.getElementById('colors').classList.add('active');
+        }
+        return;
+      }
+      
+      // Search across all cards
+      let hasResults = {};
+      let totalMatches = 0;
+      document.querySelectorAll('.section').forEach(section => {
+        hasResults[section.id] = false;
+      });
+      
+      document.querySelectorAll('.color-card, .spacing-card, .size-card, .shadow-card, .typography-example').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const matches = text.includes(query);
+        card.style.display = matches ? '' : 'none';
+        
+        // Track which sections have results
+        if (matches) {
+          totalMatches++;
+          const section = card.closest('.section');
+          if (section) {
+            hasResults[section.id] = true;
+          }
+        }
+      });
+      
+      // Show "no results" if nothing matched
+      if (totalMatches === 0) {
+        noResults.classList.add('active');
+        document.querySelectorAll('.section').forEach(section => {
+          section.classList.remove('active');
+        });
+      } else {
+        noResults.classList.remove('active');
+        // Show only sections with results
+        document.querySelectorAll('.section').forEach(section => {
+          if (hasResults[section.id]) {
+            section.classList.add('active');
+          } else {
+            section.classList.remove('active');
+          }
+        });
+      }
+      
+      // Remove active state from nav buttons during search
+      document.querySelectorAll('nav button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>

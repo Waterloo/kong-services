@@ -1,0 +1,10 @@
+@use '@kong/design-tokens/tokens/scss/variables' as *;
+
+.dot {
+    background-color: $kui-color-background-disabled;
+    border-radius: $kui-border-radius-circle;
+    display: inline-block;
+    flex-shrink: 0;
+    height: 8px;
+    width: 8px;
+}

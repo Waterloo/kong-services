@@ -6,7 +6,17 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../views/PageHome.vue'),
+      component: () => import('../layouts/MainLayout.vue'),
+      children: [{
+        path: '/',
+        name: 'Services',
+        component: () => import('../pages/Services.vue'),
+      }, {
+        // state of modal in url, so user can share link to specific service
+        path: '/:id',
+        name: 'ServiceDetails',
+        component: () => import('../pages/Services.vue'),
+      }],
     },
   ],
 })
