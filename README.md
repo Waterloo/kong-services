@@ -23,6 +23,8 @@ Built with ****Vue 3****, ****TypeScript****, ****Pinia****, and ****Kongponents
 - Displays a catalog of services with name, description, type, versions, and key metrics
 
 - Client-side search and pagination
+ 
+- Typo-tolerant fuzzy search (powered by Fuse.js) with weighted fields and forgiving misspellings
 
 - Detailed service view in a modal
 
@@ -37,6 +39,19 @@ Built with ****Vue 3****, ****TypeScript****, ****Pinia****, and ****Kongponents
 ---
 
   
+
+## ♿ Accessibility
+
+- Keyboard-friendly navigation with a logical tab order
+  - Service cards are focusable (`tabindex="0"`) and announced to screen readers via `role="button"` and descriptive `aria-label`s
+  - The services grid uses semantic roles (e.g., `role="list"`) for assistive technologies
+- Accessible modals using Kongponents `KModal`, which manages focus and supports keyboard cancellation
+- Inputs, buttons, badges, and pagination use Kongponents, inheriting accessible ARIA and focus styles by default
+- Design tokens ensure consistent color contrast and visible focus outlines
+
+
+---
+
 
 ## 🧰 Tech Stack
 
